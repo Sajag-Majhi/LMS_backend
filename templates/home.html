@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <h1>Hello world from home.html</h1>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <a href="{% url 'read' %}">Read</a>
+        <a href="{% url 'write' %}">Create</a>
+        <a href="{% url 'delete' %}">Delete</a>
+    </div>
+{% endblock %}

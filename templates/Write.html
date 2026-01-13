@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+    <article class="w-100 d-flex flex-column justify-content-center align-items-center">
+        <h1>User entry</h1>
+        <form class="w-50" method="POST">
+            {% csrf_token %}
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="name" name="name" placeholder="@yourname" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="email" name="email" placeholder="youremail@gmail.com" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                <input type="number" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="phone" name="phone" placeholder="@phonenumber" required>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem;" name="user_submit">Submit</button>
+            </div>
+        </form>
+    </article>
+
+     <article class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+        <h1>Book entry</h1>
+        <form class="w-50" method="POST">
+            {% csrf_token %}
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="title" name="title" placeholder="@booktitle" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Author</label>
+                <input type="text" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="author" name="author" placeholder="@author" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">ISBN</label>
+                <input type="number" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="isbn" name="isbn" placeholder="@isbn number (13 characters)" required>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem;" name="book_submit">Submit</button>
+            </div>
+        </form>
+    </article>
+
+     <article class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+        <h1>Borrow entry</h1>
+        <form class="w-50" method="POST">
+            {% csrf_token %}
+            <div class="mb-3 w-100 fs-3">
+                <label class="form-label">Select User</label>
+                <select name="user_id" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;">
+                    {% for user in users %}
+                    <option value="{{ user.user_id }}">{{ user.name }} ({{ user.email }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label class="form-label">Select Book</label>
+                <select name="book_id" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;">
+                    {% for book in books %}
+                    <option value="{{ book.book_id }}">{{ book.title }} ({{ book.author }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Return date</label>
+                <input type="date" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="return_date" name="return_date" placeholder="@date">
+            </div>
+
+             <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem;" name="borrow_submit">Submit</button>
+            </div>
+        </form>
+    </article>
+
+    <article class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+        <h1>Return entry</h1>
+        <form class="w-50" method="POST">
+            {% csrf_token %}
+            <div class="mb-3 w-100 fs-3">
+                <label class="form-label">Select User</label>
+                <select name="user_id" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;">
+                    {% for user in users %}
+                    <option value="{{ user.user_id }}">{{ user.name }} ({{ user.email }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label class="form-label">Select Book</label>
+                <select name="book_id" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;">
+                    {% for book in books %}
+                    <option value="{{ book.book_id }}">{{ book.title }} ({{ book.author }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Return date</label>
+                <input type="date" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="return_date" name="return_date" placeholder="@date">
+            </div>
+
+             <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem;" name="return_submit">Submit</button>
+            </div>
+        </form>
+    </article>
+{% endblock %}
