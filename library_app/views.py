@@ -57,7 +57,7 @@ def Write(request):
                 # No active borrow exists → optional: show error or create a new record
                 pass  # or Borrow.objects.create(user_id=user, book_id=book, return_date=return_date)
 
-    return render(request, 'write.html', {'users': users, 'books': books})
+    return render(request, 'Write.html', {'users': users, 'books': books})
 
 
 
