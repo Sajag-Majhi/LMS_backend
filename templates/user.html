@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Read User
+{% endblock %}
+
+{% block content %}
+    <h1>Display Tables(Read)</h1>
+    <h2>Users</h2>
+    <ul>
+    {% for person in users %}
+        <li>
+            ID: {{ person.user_id }} |
+            Name: {{ person.name }} |
+            Email: {{ person.email }} |
+            Phone: {{ person.phone }}
+        </li>
+    {% empty %}
+        <li>No users</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Borrows</h2>
+    <ul>
+    {% for borrow in borrows %}
+        <li>
+            Borrow ID: {{ borrow.borrow_id }} |
+            User: {{ borrow.user_id.name }} |
+            Book: {{ borrow.book_id.title }} |
+            Borrowed on: {{ borrow.borrow_date }} |
+            Returned: {{ borrow.return_date|default:"Not returned" }}
+        </li>
+    {% empty %}
+        <li>No Borrows</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

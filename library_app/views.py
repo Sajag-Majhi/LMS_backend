@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import User, Book, Borrow
 from datetime import datetime
 
@@ -86,3 +86,48 @@ def Delete(request):
                 Book.objects.filter(book_id=book_id).delete()
         
     return render(request, 'Delete.html', {'users': users, 'books': books})
+
+def Update(request):
+    users = User.objects.all()
+    books = Book.objects.all()
+
+    if request.method == 'POST':
+        if 'user_submit' in request.POST:
+            user_id = request.POST.get('user_id')
+            if user_id:
+                return redirect('edit_user', user_id = user_id)
+                
+        if 'book_submit' in request.POST:
+            book_id = request.POST.get('book_id')
+            if book_id:
+                return redirect('edit_book', book_id = book_id)
+
+    return render(request,'Update.html', {'users': users, 'books': books})
+
+def EditUser(request, user_id):
+    user = User.objects.get(user_id=user_id)
+
+    if request.method == 'POST':
+        if 'user_submit' in request.POST:
+            user.name = request.POST.get('name')
+            user.email = request.POST.get('email')
+            user.phone = request.POST.get('phone')
+            user.save()
+
+            return redirect('update')
+
+    return render(request, 'edituser.html')
+
+def EditBook(request, book_id):
+    book = Book.objects.get(book_id=book_id)
+
+    if request.method == 'POST':
+        if 'book_submit' in request.POST:
+            book.title = request.POST.get('title')
+            book.author = request.POST.get('author')
+            book.isbn = request.POST.get('isbn')
+            book.save()
+
+            return redirect('update')
+
+    return render(request, 'editbook.html')

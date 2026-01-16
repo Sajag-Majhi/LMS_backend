@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+     <article class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+        <h1>Book entry</h1>
+        <form class="w-50" method="POST">
+            {% csrf_token %}
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="title" name="title" placeholder="@booktitle" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">Author</label>
+                <input type="text" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="author" name="author" placeholder="@author" required>
+            </div>
+
+            <div class="mb-3 w-100 fs-3">
+                <label for="exampleFormControlInput1" class="form-label">ISBN</label>
+                <input type="number" class="form-control fs-3" style="border: 2px solid black; padding: 1rem;" id="isbn" name="isbn" placeholder="@isbn number (13 characters)" required>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem;" name="book_submit">Submit</button>
+            </div>
+        </form>
+    </article>
+{% endblock %}
