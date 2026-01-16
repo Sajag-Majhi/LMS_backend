@@ -4,5 +4,4 @@ myvenv/
 /staticfiles/ 
 *.pyc
 __pycache__/
-db.sqlite3
-   # ignore collected static files
+   
